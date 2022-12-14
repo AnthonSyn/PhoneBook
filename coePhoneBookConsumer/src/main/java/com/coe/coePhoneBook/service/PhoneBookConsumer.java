@@ -32,9 +32,12 @@ public class PhoneBookConsumer {
     @KafkaListener(topics = "phonebook-update-topic", groupId = "group-json")
     public void updatePhoneBook(ConsumerRecord<Long, PhoneBook> record) throws IOException{
             PhoneBook phoneBook = record.value();
-            PhoneBookEntity phoneBookEntity = phoneBookRepository.findById(phoneBook.getId()).get();
-            phoneBookEntity.updateEntity(phoneBook);
-            phoneBookRepository.save(phoneBookEntity);
+            PhoneBookEntity phoneBookEntity = phoneBookRepository.findById(phoneBook.getId()).orElse(null);
+            if(phoneBookEntity != null){
+                phoneBookEntity.updateEntity(phoneBook);
+                phoneBookRepository.save(phoneBookEntity);
+            }
+
     }
 
     @KafkaListener(topics = "phonebook-delete-topic", groupId = "group-json")

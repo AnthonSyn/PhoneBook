@@ -2,7 +2,9 @@ package com.coe.coePhoneBook.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+
 import java.util.Date;
+
 import jakarta.persistence.*;
 
 
@@ -21,9 +23,8 @@ public class Customer {
     private String phoneNumber;
     @Column(name = "email", nullable = false)
     private String email;
-    @Enumerated(EnumType.ORDINAL)
     @Column(name = "status")
-    private CustomerStatus status;
+    private String status;
     @Column(name = "create_date", nullable = false)
     private Date createDate;
     @Column(name = "last_time_online")
@@ -69,11 +70,11 @@ public class Customer {
         this.email = email;
     }
 
-    public CustomerStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(CustomerStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

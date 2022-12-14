@@ -13,11 +13,11 @@ public class PhoneBookEntity {
     @Column(name="id")
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="customer_id", referencedColumnName = "id", nullable = false)
     private Customer customerId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="my_contact_id", referencedColumnName = "id", nullable = false)
     private Customer myContactId;
 
